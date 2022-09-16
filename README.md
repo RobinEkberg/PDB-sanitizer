@@ -1,7 +1,7 @@
 # PDB-sanitizer
 Prepare pdb-files for AutoDock Vina by sanitizing them from unnessecary information
 
-#Use
+# Use
 Input the pdb-accesion number and choose if water should be kept or not. If the pdb-file is to be used for AutoDock Vina, the water should be removed. 
 
 Input **'No'** to remove water from the crystal structure. 

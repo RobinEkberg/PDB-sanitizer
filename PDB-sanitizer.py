@@ -1,4 +1,7 @@
+from cgitb import reset
 import os
+from urllib import response
+import requests
 
 amino_acids = ['ALA ', 'ARG ', 'ASN ', 'ASP ', 'CYS ', 'GLU ', 'GLN ', 'GLY ', 'HIS ', 'ILE ',
                'LEU ', 'LYS ', 'MET ', 'PHE ', 'PRO ', 'SER ', 'THR ', 'TRP ', 'TYR ', 'VAL ', 'HOH ']
@@ -6,7 +9,19 @@ arg = ['ATOM', 'ANISOU', 'TER ']
 arg_water = ['ATOM', 'ANISOU', 'TER ', 'HETATM']
 
 
-input_pdb = input('Enter .pdb-ID:')
+
+
+input_structure = input('Enter .pdb-ID:')
+
+URL = (f'https://files.rcsb.org/download/{input_structure}.pdb')
+downloaded_pdb = requests.get(URL)
+
+
+input_pdb = (f'{input_structure}.pdb')
+
+open(f'{input_pdb}', 'wb').write(downloaded_pdb.content)
+
+
 fname = os.path.splitext(input_pdb)
 input_water = input('Keep water? ')
 
@@ -51,4 +66,4 @@ clean_pdb.close()
 if input_water == 'No':
     print('The file was sanitized and water was removed form the crystal structure')
 if input_water != 'No':
-    print('The file was sanitized and water was kept in the crystal structure')6hzn.pdb
+    print('The file was sanitized and water was kept in the crystal structure')
